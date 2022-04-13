@@ -1,0 +1,49 @@
+.navigation{
+    float: top;
+    position: fixed;
+    width: 100%;
+    background: black;
+    bottom: 0px;
+    left: 0;
+}
+
+.navigate{
+    float: left;
+    position: relative;
+    width: 100px;
+    border: 5px gray dotted;
+    color: aliceblue;
+    padding: 4px;
+    text-align: center;
+}
+
+
+
+#viewImg{
+    width: 400px;
+    height: 400px;
+    float: left;
+    position: relative;
+}
+
+#pointCloud{
+    width: 400px;
+    height: 600px;
+    float: left;
+    position: relative;
+
+}
+
+#Nevtech{
+    width: 100%;
+}
+
+#container1{
+
+    width: 400px;
+    height: 400px;
+    float: left;
+    position: relative;
+    overflow: hidden;
+
+}
