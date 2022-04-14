@@ -2,19 +2,19 @@ let scene, camera, renderer;
 let stats;
 let orbitControls, clock, delta;
 
-function pointCloudMaker(points) {
+function pointCloudMaker(points,container11,container22,height=400,width=400,background,color,size = 0.3) {
     // console.log(pointing);
     console.log("pointCloud" + points[0].xx);
-    let container1 = document.getElementById("container1");
-    let container2 = document.getElementById("container2");
-    main(container1,container2,points);
+    let container1 = document.getElementById(container11);
+    let container2 = document.getElementById(container22);
+    main(container1,container2,points,height,width,background,color,size);
     render(true);
 }
 
 
-function initScene() {
+function initScene(background) {
     scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xFFFFFF);
+    scene.background = new THREE.Color(background);
 }
 
 function initCamera() {
@@ -23,12 +23,12 @@ function initCamera() {
     camera.lookAt(new THREE.Vector3());
 }
 
-function initRenderer(container) {
+function initRenderer(container,height,width) {
     renderer = new THREE.WebGLRenderer();
-    renderer.setClearColor(new THREE.Color(0x000000, 1.0));
+    renderer.setClearColor(new THREE.Color(0xffffff, 1.0));
     // let width = getClass(document.getElementById('container1'),"width");
     // let height = getClass(document.getElementById('container1'),"height");
-    renderer.setSize(400,400);
+    renderer.setSize(width,height);
     container.appendChild(renderer.domElement);
 }
 
@@ -41,14 +41,14 @@ function initControl(){
     clock = new THREE.Clock();//用于更新轨道控制器
 }
 
-function main(container1,container2,points) {
+function main(container1,container2,points,height,width,background,color,size) {
     stats = initStats(container2);
-    initScene();
+    initScene(background);
     initCamera();
-    initRenderer(container1);
+    initRenderer(container1,height,width);
     initControl();
 
-    createParticles(points);
+    createParticles(points,color,size);
 }
 
 
@@ -82,12 +82,22 @@ function initStats(container) {
 }
 
 
-function createParticles(points) {
+function createParticles(points,color,size) {
 
     let x,y,z,intensity,ring;
 
     const geom = new THREE.Geometry();
-    let material = new THREE.PointCloudMaterial({size: 0.2, vertexColors: true, color: 0xffffff});
+    if (color===0){
+        geom.colors.push(new THREE.Color(0x000000));
+    } else if (color===1){
+        geom.colors.push(new THREE.Color(0xFFFFFF));
+    }
+    let material = new THREE.PointCloudMaterial({size: size, vertexColors: true, color: 0xFFFFFF});
+    if (color===0){
+        material = new THREE.PointCloudMaterial({size: size, vertexColors: true, color: 0x000000});
+    } else if (color===1){
+        material = new THREE.PointCloudMaterial({size: size, vertexColors: true, color: 0xFFFFFF});
+    }
     let jslength=0;
 
     for(let js2 in points){
@@ -105,7 +115,13 @@ function createParticles(points) {
             intensity = points[i].intensity;
             let particle = new THREE.Vector3(x, y, z);
         geom.vertices.push(particle);
-        geom.colors.push(new THREE.Color(0x000000));
+        if (color===0){
+            geom.colors.push(new THREE.Color(0x000000));
+        } else if (color===1){
+            geom.colors.push(new THREE.Color(0xFFFFFF));
+        } else if (color===3){
+            geom.colors.push(new THREE.Color(intensity*55));
+        }
     }
     console.log("load done!");
     // for (let x = -5; x < 5; x++) {

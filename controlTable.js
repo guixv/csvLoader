@@ -11,7 +11,7 @@ function readFileButton(file1,pro){
     let points = csvLoader(file1,pro);
     let frame = document.getElementById("frame").innerText;
     previewImage(file1,frame);
-    pointCloudMaker(points);
+    pointCloudMaker(points,"container1","container2",400,400,0xFFFFFF,0);
     // pointCloudMaker();
 }
 
