@@ -18,10 +18,12 @@
 }
 
 .guide{
-    position: relative;
+    position: absolute;
     width: 250px;
     border: antiquewhite 1px solid;
     border-radius: 5px;
+    text-align: left;
+    color: antiquewhite;
 }
 
 #indexCloud{
@@ -29,15 +31,11 @@
     left: 20%;
     width: 60%;
     height: 90%;
-    position: absolute;
+    position: relative;
     float: contour;
     overflow: hidden;
 }
 
-#indexWord{
-    text-align: left;
-    color: antiquewhite;
-}
 
 #viewImg{
     width: 400px;
