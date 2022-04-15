@@ -17,7 +17,27 @@
     text-align: center;
 }
 
+.guide{
+    position: relative;
+    width: 250px;
+    border: antiquewhite 1px solid;
+    border-radius: 5px;
+}
 
+#indexCloud{
+    top: 0;
+    left: 20%;
+    width: 60%;
+    height: 90%;
+    position: absolute;
+    float: contour;
+    overflow: hidden;
+}
+
+#indexWord{
+    text-align: left;
+    color: antiquewhite;
+}
 
 #viewImg{
     width: 400px;

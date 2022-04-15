@@ -11,12 +11,16 @@ function readFileButton(file1,pro){
     let points = csvLoader(file1,pro);
     let frame = document.getElementById("frame").innerText;
     previewImage(file1,frame);
-    pointCloudMaker(points);
+    pointCloudMaker(points,"container1","container2",400,400,0xFFFFFF,0);
     // pointCloudMaker();
 }
 
 function jump(a) {
+    if (a===0){
+        window.open("README.md","_blank");
+    }
     let locate = {
+        '0' : 'index.html',
         '1' : 'index.html',
         '2' : 'loader.html'
     };

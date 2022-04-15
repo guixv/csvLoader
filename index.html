@@ -6,15 +6,59 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>index</title>
     <link rel="stylesheet" type="text/css" href="style.css" >
-    <script src="controlTable.js" type="text/javascript"></script>
+    <script src="csvLoader.js"></script>
+    <script src="pointCloud.js"></script>
+    <script src="controlTable.js"></script>
+    <script src="lib/three.js" type="text/javascript"></script>
+    <script src="lib/stats.min.js" type="text/javascript"></script>
+    <script src="lib/OrbitControls.js" type="text/javascript"></script>
+    <script src="lib/jquery.min.js" type="text/javascript"></script>
 
 </head>
-<body>
+<body style="background: black">
+<div id="indexStyle">
+    <div id="indexWord">
+        在下方导航栏中选择需要的功能
+    </div>
+    <div id="indexCloud">
+        <div id="indexContainer1">
+
+        </div>
+        <div id="indexContainer2" style="display: none">
+
+        </div>
+    </div>
+</div>
 <div class="navigation">
+    <div class="navigate" onclick="jump(0)">用户指南</div>
     <div class="navigate" onclick="jump(1)">主页</div>
     <div class="navigate" onclick="jump(2)">csv文件自选</div>
 </div>
 
+<script>
+    function csvToJson(filePath) {
+        let result = [];
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", filePath, false);
+        xhr.onload = function (e) {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    result = str2JSON(xhr.responseText)
+                } else {
+                    console.error(xhr.statusText);
+                }
+            }
+        };
+        xhr.send(null);
+        return result
+    }
+
+
+
+    let points = csvToJson("000001.csv");
+    pointCloudMaker(points,"indexContainer1","indexContainer2",800,900,0x000000,3,1,1)
+
+</script>
 
 </body>
 
