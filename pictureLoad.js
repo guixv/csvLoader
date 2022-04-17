@@ -10,6 +10,7 @@ function previewImage(file,frame) {
         let reader = new FileReader();
         reader.onload = function(e){
             viewImg.attr({src : "img/Navtech_Cartesian/" + frame + ".png" , alt : "没有相应的毫米波雷达图像"});
+
         };
         reader.readAsDataURL(file.files[0]);
     } else {
